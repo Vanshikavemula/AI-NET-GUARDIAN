@@ -1,0 +1,13 @@
+[global]
+dataFrameSerialization = "legacy"
+
+[server]
+maxUploadSize = 500
+maxMessageSize = 500
+
+[theme]
+primaryColor = "#667eea"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#262730"
+font = "sans serif"

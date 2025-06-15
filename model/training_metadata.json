@@ -1,0 +1,14 @@
+{
+  "accuracy": 0.9918181818181818,
+  "cv_mean": 0.9947272727272727,
+  "cv_std": 0.001060173071790046,
+  "best_params": {
+    "max_depth": 20,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "n_estimators": 300
+  },
+  "feature_count": 32,
+  "training_samples": 4400,
+  "test_samples": 1100
+}

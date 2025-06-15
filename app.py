@@ -903,37 +903,54 @@ elif analysis_mode == "Batch File Analysis":
                 if 'url' not in df.columns:
                     st.error("❌ CSV must contain a 'url' column!")
                 else:
-                    if st.button("🚀 Start Analysis", type="primary"):
+                  if st.button("🚀 Start Analysis", type="primary"):
                         # Analysis
                         progress_bar = st.progress(0)
                         status_text = st.empty()
                         
-                        features_list = []
                         predictions = []
                         probabilities = []
                         traffic_types = []
+                        risk_scores = []
+                        
+                        total_urls = len(df)
+                        batch_size = 100
                         
                         for i, url in enumerate(df['url']):
-                            if i % 100 == 0:
-                                status_text.text(f"🔄 Processing URL {i+1:,}/{len(df):,}")
-                                progress_bar.progress((i+1)/len(df))
+                            # Update progress bar every 100 URLs or at the end
+                            if i % batch_size == 0 or i == total_urls - 1:
+                                status_text.text(f"🔄 Processing batch {(i//batch_size)+1} - URL {i+1:,}/{total_urls:,}")
+                                progress_bar.progress((i+1)/total_urls)
                             
-                            features = extract_features(url)
-                            pred = st.session_state.model.predict([features])[0]
-                            prob = st.session_state.model.predict_proba([features])[0]
-                            traffic_type = st.session_state.traffic_analyzer.classify_traffic(url)
-                            
-                            features_list.append(features)
-                            predictions.append(pred)
-                            probabilities.append(max(prob))
-                            traffic_types.append(traffic_type)
+                            try:
+                                features = extract_features(url)
+                                pred = st.session_state.model.predict([features])[0]
+                                prob = st.session_state.model.predict_proba([features])[0]
+                                traffic_type = st.session_state.traffic_analyzer.classify_traffic(url)
+                                
+                                predictions.append(pred)
+                                probabilities.append(max(prob))
+                                traffic_types.append(traffic_type)
+                                # Calculate risk score immediately to avoid recalculation
+                                risk_scores.append(prob[1] if len(prob) > 1 else 0)
+                                
+                            except Exception as e:
+                                # Handle any errors in processing individual URLs
+                                predictions.append(0)
+                                probabilities.append(0.5)
+                                traffic_types.append("Unknown")
+                                risk_scores.append(0.0)
                         
-                        # Add results to dataframe
+                        # Final progress update
+                        status_text.text(f"✅ Processing complete! Displaying results...")
+                        progress_bar.progress(1.0)
+                        
+                        # Add results to dataframe immediately - no additional processing
                         df['Threat_Status'] = ['Malicious' if p else 'Benign' for p in predictions]
                         df['Confidence'] = probabilities
                         df['Traffic_Type'] = traffic_types
-                        df['Risk_Score'] = [prob[1] if len(prob) > 1 else 0 for prob in 
-                                          [st.session_state.model.predict_proba([f])[0] for f in features_list]]
+                        df['Risk_Score'] = risk_scores
+                        
                         
                         # Summary metrics
                         col1, col2, col3, col4 = st.columns(4)

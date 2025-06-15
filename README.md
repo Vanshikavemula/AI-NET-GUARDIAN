@@ -1,5 +1,8 @@
 # 🛡️ AI NET GUARDIAN
 
+<img width="1706" alt="ainetguardianss" src="https://github.com/user-attachments/assets/3dbe276c-9fc6-41af-aa13-18c5b1cd4118" />
+
+
 
 > **Advanced AI-Powered Network Security Dashboard for Real-time Threat Detection and Traffic Classification**
 
@@ -22,6 +25,7 @@
 AI Network Security Dashboard is a cutting-edge machine learning application designed to detect malicious URLs, classify network traffic, and provide comprehensive security analytics in real-time. Built with advanced Random Forest algorithms and featuring an intuitive Streamlit interface, this tool serves as your first line of defense against web-based threats.
 
 ### 🎥 Quick Demo
+
 
 
 
@@ -58,16 +62,8 @@ AI Network Security Dashboard is a cutting-edge machine learning application des
 
 ## 🏗️ Architecture
 
-```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Streamlit     │    │   ML Pipeline    │    │   Data Layer    │
-│   Frontend      │◄──►│                  │◄──►│                 │
-│                 │    │ • Feature        │    │ • Training Data │
-│ • Dashboard     │    │   Extraction     │    │ • Model Storage │
-│ • Visualizations│    │ • Random Forest  │    │ • Results Cache │
-│ • User Interface│    │ • Predictions    │    │ • Metadata      │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-```
+![arch_diag drawio (1)](https://github.com/user-attachments/assets/c2d8346d-2cf0-417a-a38e-6471d11470c9)
+
 
 ## ⚙️ Installation
 
@@ -140,7 +136,7 @@ http://bank.com/transfer?to='; DROP TABLE users;--
 
 ## 📊 Model Performance
 
-Our enhanced Random Forest model achieves impressive performance metrics:
+The enhanced Random Forest model achieves impressive performance metrics:
 
 | Metric | Score |
 |--------|-------|

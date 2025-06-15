@@ -675,15 +675,15 @@ elif analysis_mode == "Batch File Analysis":
     st.markdown("""
     <div class="upload-section">
         <h3 style="color: #667eea; margin-bottom: 1rem;">📤 Upload Your CSV File</h3>
-        <p style="color: #666; margin-bottom: 1rem;">Maximum file size: 500MB | Supported format: CSV</p>
+        <p style="color: #666; margin-bottom: 1rem;">Maximum file size: 200MB | Supported format: CSV</p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Set max file size to 500MB programmatically
+    # Set max file size to 200MB programmatically
     uploaded_file = st.file_uploader(
         "Choose CSV file",
         type=["csv"],
-        help="CSV should contain a 'url' column. Maximum file size: 500MB"
+        help="CSV should contain a 'url' column. Maximum file size: 200MB"
     )
     
     if uploaded_file:
@@ -700,8 +700,8 @@ elif analysis_mode == "Batch File Analysis":
             with col3:
                 st.metric("✅ Status", "Ready")
             
-            if file_size > 500:
-                st.error("⚠️ File size exceeds 500MB limit! Please use a smaller file.")
+            if file_size > 200:
+                st.error("⚠️ File size exceeds 200MB limit! Please use a smaller file.")
             else:
                 # Read file in chunks for large files
                 if file_size > 50:

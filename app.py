@@ -24,30 +24,210 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS
+# Enhanced Custom CSS with modern styling
 st.markdown("""
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
     .main-header {
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-        padding: 1rem;
-        border-radius: 10px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        padding: 2rem;
+        border-radius: 20px;
         color: white;
         text-align: center;
         margin-bottom: 2rem;
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        animation: gradient-shift 3s ease infinite;
+        position: relative;
+        overflow: hidden;
     }
+    
+    .main-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        animation: shimmer 2s infinite;
+    }
+    
+    @keyframes shimmer {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+    
+    @keyframes gradient-shift {
+        0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
+        50% { background: linear-gradient(135deg, #f093fb 0%, #667eea 50%, #764ba2 100%); }
+    }
+    
+    .main-header h1 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        position: relative;
+        z-index: 1;
+    }
+    
+    .main-header p {
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 1.1rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 1;
+    }
+    
     .metric-card {
-        background: #f8f9fa;
-        padding: 1rem;
-        border-radius: 8px;
-        border-left: 4px solid #667eea;
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        padding: 1.5rem;
+        border-radius: 15px;
+        border: 1px solid #e9ecef;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
     }
+    
+    .metric-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+    
+    .metric-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
     .threat-detected {
-        background: #ffe6e6;
-        border-left: 4px solid #ff4444;
+        background: linear-gradient(145deg, #fff5f5 0%, #ffe6e6 100%);
+        border: 1px solid #fecaca;
+        box-shadow: 0 8px 25px rgba(239, 68, 68, 0.15);
     }
+    
+    .threat-detected::before {
+        background: linear-gradient(90deg, #ef4444, #dc2626);
+    }
+    
     .safe-traffic {
-        background: #e6ffe6;
-        border-left: 4px solid #44ff44;
+        background: linear-gradient(145deg, #f0fff4 0%, #e6ffe6 100%);
+        border: 1px solid #bbf7d0;
+        box-shadow: 0 8px 25px rgba(34, 197, 94, 0.15);
+    }
+    
+    .safe-traffic::before {
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+    }
+    
+    .stButton > button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 2rem;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+    
+    .stSelectbox > div > div {
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .stTextArea > div > div > textarea {
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .upload-section {
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        padding: 2rem;
+        border-radius: 20px;
+        border: 2px dashed #667eea;
+        text-align: center;
+        margin: 2rem 0;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .upload-section::before {
+        content: '📁';
+        font-size: 3rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.1;
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+        50% { transform: translate(-50%, -50%) translateY(-10px); }
+    }
+    
+    .upload-section:hover {
+        border-color: #764ba2;
+        background: linear-gradient(145deg, #f8f9fa 0%, #ffffff 100%);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+    }
+    
+    .sidebar .stSelectbox > div > div {
+        background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 12px;
+    }
+    
+    .analysis-section {
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        padding: 2rem;
+        border-radius: 20px;
+        margin: 1rem 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border: 1px solid #e9ecef;
+    }
+    
+    .stDataFrame {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .stProgress > div > div {
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 10px;
+    }
+    
+    .footer {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 20px;
+        text-align: center;
+        margin-top: 3rem;
+        box-shadow: 0 -10px 30px rgba(102, 126, 234, 0.3);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -58,7 +238,7 @@ if 'model' not in st.session_state:
 if 'traffic_analyzer' not in st.session_state:
     st.session_state.traffic_analyzer = TrafficAnalyzer()
 
-# Header
+# Header with enhanced styling
 st.markdown("""
 <div class="main-header">
     <h1>🛡️ AI-Powered Network Security Dashboard</h1>
@@ -66,12 +246,354 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Sidebar
-st.sidebar.title("🔧 Control Panel")
-analysis_mode = st.sidebar.selectbox(
-    "Select Analysis Mode",
-    ["Real-time URL Analysis", "Batch File Analysis", "Model Performance", "Traffic Insights"]
+# Enhanced Sidebar with improved design and proper alignment
+st.sidebar.markdown("""
+<style>
+    /* Sidebar container styling */
+    .css-1d391kg {
+        background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+        padding: 1rem;
+    }
+    
+    .sidebar-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 20px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .sidebar-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        animation: shimmer 3s infinite;
+    }
+    
+    .sidebar-header h2 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        position: relative;
+        z-index: 1;
+    }
+    
+    .sidebar-header .subtitle {
+        margin: 0.5rem 0 0 0;
+        font-size: 0.9rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 1;
+    }
+    
+   /* Analysis selection section - Fixed */
+.analysis-selector {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 1rem 0;
+    margin: 1rem 0;
+    box-shadow: none;
+    position: relative;
+}
+
+.analysis-selector::before {
+    display: none;
+}
+
+.selector-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.selector-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+    /* Enhanced radio button styling */
+    .stRadio > div {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+    }
+    
+    .stRadio > div > label {
+        display: flex !important;
+        align-items: center !important;
+        background: linear-gradient(145deg, #f8f9fa 0%, #ffffff 100%) !important;
+        border: 2px solid #e9ecef !important;
+        border-radius: 15px !important;
+        padding: 1rem !important;
+        margin: 0.5rem 0 !important;
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+        color: #333 !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    }
+    
+    .stRadio > div > label:hover {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+        border-color: #667eea !important;
+    }
+    
+    .stRadio > div > label > div:first-child {
+        background: transparent !important;
+        border: none !important;
+        margin-right: 0.8rem !important;
+    }
+    
+    /* Description box styling */
+    .mode-description {
+        background: linear-gradient(145deg, #f0f4ff 0%, #e6f0ff 100%);
+        border-left: 4px solid #667eea;
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+    }
+    
+    .mode-description .icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+        display: block;
+    }
+    
+    .mode-description .title {
+        font-weight: 700;
+        color: #333;
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .mode-description .desc {
+        font-size: 0.95rem;
+        color: #666;
+        line-height: 1.5;
+    }
+    
+    /* Stats section */
+    .sidebar-stats {
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        border-radius: 20px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border: 2px solid #e9ecef;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        position: relative;
+    }
+    
+    .sidebar-stats::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .stats-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    
+    .stat-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+    
+    .stat-item:last-child {
+        border-bottom: none;
+    }
+    
+    .stat-label {
+        font-size: 0.95rem;
+        color: #666;
+        font-weight: 500;
+    }
+    
+    .stat-value {
+        font-weight: 700;
+        color: #333;
+        font-size: 0.95rem;
+    }
+    
+    /* Help section */
+    .help-section {
+        background: linear-gradient(145deg, #fff8e1 0%, #fff3c4 100%);
+        border-radius: 20px;
+        padding: 1.5rem;
+        border: 2px solid #ffd54f;
+        margin: 1.5rem 0;
+        box-shadow: 0 8px 25px rgba(255, 193, 7, 0.2);
+        position: relative;
+    }
+    
+    .help-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #ff9800, #f57c00);
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .help-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #f57f17;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    
+    .help-content {
+        font-size: 0.85rem;
+        color: #e65100;
+        line-height: 1.6;
+    }
+    
+    .help-content strong {
+        font-weight: 700;
+        color: #bf360c;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Enhanced Sidebar Header
+st.sidebar.markdown("""
+<div class="sidebar-header">
+    <h2>🔧 Control Panel</h2>
+    <p class="subtitle">AI Network Security Dashboard</p>
+</div>
+""", unsafe_allow_html=True)
+
+# Analysis mode options
+analysis_options = [
+    {
+        "value": "Real-time URL Analysis",
+        "icon": "🔍",
+        "title": "Real-time Analysis",
+        "description": "Analyze URLs instantly for threats and malicious content with real-time processing"
+    },
+    {
+        "value": "Batch File Analysis", 
+        "icon": "📁",
+        "title": "Batch Processing",
+        "description": "Upload CSV files and analyze multiple URLs simultaneously for comprehensive security assessment"
+    },
+    {
+        "value": "Model Performance",
+        "icon": "📈", 
+        "title": "Performance Metrics",
+        "description": "View detailed model accuracy, precision, recall, and comprehensive analytics dashboard"
+    },
+    {
+        "value": "Traffic Insights",
+        "icon": "🌐",
+        "title": "Network Traffic",
+        "description": "Comprehensive network traffic analysis with temporal insights and threat patterns"
+    }
+]
+
+# Enhanced Analysis Selection Section
+st.sidebar.markdown("""
+<div class="analysis-selector">
+    <div class="selector-header">
+        <h3>🎯 Choose Analysis Mode</h3>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# Fixed radio button with proper label
+analysis_mode = st.sidebar.radio(
+    "Select Analysis Type",
+    options=[opt["value"] for opt in analysis_options],
+    format_func=lambda x: next(opt["icon"] + "  " + opt["title"] for opt in analysis_options if opt["value"] == x),
+    label_visibility="collapsed"
 )
+
+# Enhanced description for selected mode
+selected_option = next(opt for opt in analysis_options if opt["value"] == analysis_mode)
+st.sidebar.markdown(f"""
+<div class="mode-description">
+    <div class="icon">{selected_option["icon"]}</div>
+    <div class="title">{selected_option["title"]}</div>
+    <div class="desc">{selected_option["description"]}</div>
+</div>
+""", unsafe_allow_html=True)
+
+# Enhanced sidebar stats
+st.sidebar.markdown("""
+<div class="sidebar-stats">
+    <div class="stats-header">📊 System Status</div>
+    <div class="stat-item">
+        <span class="stat-label">🛡️ Active Models</span>
+        <span class="stat-value">1</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-label">⚡ System Status</span>
+        <span class="stat-value" style="color: #22c55e;">Online</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-label">🔒 Security Level</span>
+        <span class="stat-value" style="color: #667eea;">Maximum</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-label">🚀 Version</span>
+        <span class="stat-value">v2.1.0</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-label">📡 Last Update</span>
+        <span class="stat-value" style="color: #10b981;">Active</span>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# Enhanced help section
+st.sidebar.markdown("---")
+st.sidebar.markdown("""
+<div class="help-section">
+    <div class="help-header">💡 Quick Guide</div>
+    <div class="help-content">
+        <strong>🔍 Real-time:</strong> Paste URLs for instant threat analysis and classification<br><br>
+        <strong>📁 Batch:</strong> Upload CSV files with 'url' column for bulk processing<br><br>
+        <strong>📈 Performance:</strong> View comprehensive model metrics and accuracy reports<br><br>
+        <strong>🌐 Traffic:</strong> Analyze network patterns, insights, and traffic classification
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # Main content based on mode
 if analysis_mode == "Real-time URL Analysis":
@@ -143,24 +665,43 @@ if analysis_mode == "Real-time URL Analysis":
                     fig = px.bar(df_results.groupby('Traffic_Type').size().reset_index(name='Count'),
                                x='Traffic_Type', y='Count', title='Traffic Classification')
                     st.plotly_chart(fig, use_container_width=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif analysis_mode == "Batch File Analysis":
     st.header("📁 Batch File Analysis")
     
+    # Enhanced upload section
+    st.markdown("""
+    <div class="upload-section">
+        <h3 style="color: #667eea; margin-bottom: 1rem;">📤 Upload Your CSV File</h3>
+        <p style="color: #666; margin-bottom: 1rem;">Maximum file size: 500MB | Supported format: CSV</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Set max file size to 500MB programmatically
     uploaded_file = st.file_uploader(
-        "Upload CSV file (Max 500MB)",
+        "Choose CSV file",
         type=["csv"],
-        help="CSV should contain a 'url' column"
+        help="CSV should contain a 'url' column. Maximum file size: 500MB"
     )
     
     if uploaded_file:
         try:
             # Handle large files
             file_size = uploaded_file.size / (1024 * 1024)  # MB
-            st.info(f"File size: {file_size:.2f} MB")
+            
+            # Create file info display
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("📄 File Size", f"{file_size:.2f} MB")
+            with col2:
+                st.metric("📊 Format", "CSV")
+            with col3:
+                st.metric("✅ Status", "Ready")
             
             if file_size > 500:
-                st.error("File size exceeds 500MB limit!")
+                st.error("⚠️ File size exceeds 500MB limit! Please use a smaller file.")
             else:
                 # Read file in chunks for large files
                 if file_size > 50:
@@ -172,10 +713,10 @@ elif analysis_mode == "Batch File Analysis":
                 else:
                     df = pd.read_csv(uploaded_file)
                 
-                st.success(f"Loaded {len(df)} URLs successfully!")
+                st.success(f"✅ Loaded {len(df):,} URLs successfully!")
                 
                 if 'url' not in df.columns:
-                    st.error("CSV must contain a 'url' column!")
+                    st.error("❌ CSV must contain a 'url' column!")
                 else:
                     if st.button("🚀 Start Analysis", type="primary"):
                         # Analysis
@@ -189,7 +730,7 @@ elif analysis_mode == "Batch File Analysis":
                         
                         for i, url in enumerate(df['url']):
                             if i % 100 == 0:
-                                status_text.text(f"Processing URL {i+1}/{len(df)}")
+                                status_text.text(f"🔄 Processing URL {i+1:,}/{len(df):,}")
                                 progress_bar.progress((i+1)/len(df))
                             
                             features = extract_features(url)
@@ -212,13 +753,13 @@ elif analysis_mode == "Batch File Analysis":
                         # Summary metrics
                         col1, col2, col3, col4 = st.columns(4)
                         with col1:
-                            st.metric("Total URLs", len(df))
+                            st.metric("Total URLs", f"{len(df):,}")
                         with col2:
                             malicious_count = len(df[df['Threat_Status'] == 'Malicious'])
-                            st.metric("🔴 Threats", malicious_count)
+                            st.metric("🔴 Threats", f"{malicious_count:,}")
                         with col3:
                             benign_count = len(df[df['Threat_Status'] == 'Benign'])
-                            st.metric("🟢 Safe", benign_count)
+                            st.metric("🟢 Safe", f"{benign_count:,}")
                         with col4:
                             st.metric("Detection Rate", f"{malicious_count/len(df)*100:.1f}%")
                         
@@ -257,9 +798,12 @@ elif analysis_mode == "Batch File Analysis":
                         )
                         
         except Exception as e:
-            st.error(f"Error processing file: {str(e)}")
+            st.error(f"❌ Error processing file: {str(e)}")
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif analysis_mode == "Model Performance":
+
     st.header("📈 Model Performance Analysis")
     
     # Load test data for evaluation
@@ -351,7 +895,9 @@ elif analysis_mode == "Model Performance":
         else:
             st.warning("Feature importance not available for this model type.")
     
-    # Generate sample traffic data for demonstration
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# Generate sample traffic data for demonstration
 elif analysis_mode == "Traffic Insights":
     st.header("🌐 Network Traffic Insights")
     
@@ -408,12 +954,16 @@ elif analysis_mode == "Traffic Insights":
         # Detailed traffic table
         st.subheader("📋 Traffic Log")
         st.dataframe(df_traffic.sort_values('Timestamp', ascending=False), use_container_width=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# Footer
+# Enhanced Footer
 st.markdown("---")
 st.markdown("""
-<div style='text-align: center; color: #666;'>
-    <p>🛡️ AI-Powered Network Security Dashboard | Built with Streamlit & Machine Learning</p>
-    <p>Deliverable 1: AI-Powered Traffic Classification ✓ | Deliverable 2: Threat Detection & Anomaly Identification ✓</p>
+<div class="footer">
+    <h3>🛡️ AI-Powered Network Security Dashboard</h3>
+    <p>Built with Streamlit & Machine Learning</p>
+    <p>✅ Deliverable 1: AI-Powered Traffic Classification | ✅ Deliverable 2: Threat Detection & Anomaly Identification</p>
+    <p style="margin-top: 1rem; opacity: 0.8;">Powered by advanced ML algorithms for real-time threat detection</p>
 </div>
 """, unsafe_allow_html=True)

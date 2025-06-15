@@ -1,4 +1,3 @@
-# train_enhanced.py
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
@@ -14,18 +13,18 @@ def train_enhanced_model():
     
     print("🚀 Starting Enhanced Model Training...")
     
-    # Create model directory
+    # Created model directory
     os.makedirs("model", exist_ok=True)
     
-    # Generate larger dataset for better training
+    # Generated larger dataset for better training
     print("📊 Generating enhanced training dataset...")
     generate_large_dataset()
     
-    # Load training data
+    # Loaded training data
     df = pd.read_csv("enhanced_training_data.csv")
     print(f"✅ Loaded {len(df)} training samples")
     
-    # Extract features
+    # Extracted features
     print("🔍 Extracting features...")
     X = []
     for i, url in enumerate(df["url"]):
@@ -61,10 +60,10 @@ def train_enhanced_model():
     print(f"🎯 Best parameters: {grid_search.best_params_}")
     print(f"🎯 Best cross-validation score: {grid_search.best_score_:.4f}")
     
-    # Train final model
+    # Training final model
     best_model = grid_search.best_estimator_
     
-    # Evaluate model
+    # Evaluating model
     print("📊 Evaluating model performance...")
     y_pred = best_model.predict(X_test)
     

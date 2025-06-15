@@ -24,7 +24,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Enhanced Custom CSS with modern styling
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -158,6 +157,53 @@ st.markdown("""
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         font-family: 'Inter', sans-serif;
+        color: #333333;
+    }
+    
+    .stTextArea > div > div > textarea::placeholder {
+        color: #666666;
+        opacity: 0.8;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+        .stTextArea > div > div > textarea {
+            background: linear-gradient(145deg, #2d2d2d 0%, #3a3a3a 100%) !important;
+            border: 1px solid #4a4a4a !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+        }
+        
+        .stTextArea > div > div > textarea::placeholder {
+            color: #cccccc !important;
+            opacity: 0.7 !important;
+        }
+    }
+    
+    .stApp[data-theme="dark"] .stTextArea > div > div > textarea,
+    html[data-theme="dark"] .stTextArea > div > div > textarea {
+        background: linear-gradient(145deg, #2d2d2d 0%, #3a3a3a 100%) !important;
+        border: 1px solid #4a4a4a !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    }
+    
+    .stApp[data-theme="dark"] .stTextArea > div > div > textarea::placeholder,
+    html[data-theme="dark"] .stTextArea > div > div > textarea::placeholder {
+        color: #cccccc !important;
+        opacity: 0.7 !important;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+        .stTextArea > div > div > textarea:focus {
+            border-color: #667eea !important;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) !important;
+        }
+    }
+    
+    .stApp[data-theme="dark"] .stTextArea > div > div > textarea:focus,
+    html[data-theme="dark"] .stTextArea > div > div > textarea:focus {
+        border-color: #667eea !important;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) !important;
     }
     
     .upload-section {
@@ -238,7 +284,7 @@ if 'model' not in st.session_state:
 if 'traffic_analyzer' not in st.session_state:
     st.session_state.traffic_analyzer = TrafficAnalyzer()
 
-# Header with enhanced styling
+# Header styling
 st.markdown("""
 <div class="main-header">
     <h1>🛡️ AI-Powered Network Security Dashboard</h1>
@@ -246,7 +292,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Enhanced Sidebar with improved design and proper alignment
+#Sidebar with dark mode compatibility
 st.sidebar.markdown("""
 <style>
     /* Sidebar container styling */
@@ -295,38 +341,34 @@ st.sidebar.markdown("""
         z-index: 1;
     }
     
-   /* Analysis selection section - Fixed */
-.analysis-selector {
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 1rem 0;
-    margin: 1rem 0;
-    box-shadow: none;
-    position: relative;
-}
+    /* Analysis selection section */
+    .analysis-selector {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 1rem 0;
+        margin: 1rem 0;
+        box-shadow: none;
+        position: relative;
+    }
 
-.analysis-selector::before {
-    display: none;
-}
+    .selector-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1rem;
+        border-radius: 15px;
+        margin-bottom: 1rem;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
 
-.selector-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 1rem;
-    border-radius: 15px;
-    margin-bottom: 1rem;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-}
-
-.selector-header h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-    /* Enhanced radio button styling */
-    .stRadio > div {
+    .selector-header h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+    
+    div[data-testid="stRadio"] > div {
         background: transparent !important;
         border: none !important;
         padding: 0 !important;
@@ -334,32 +376,54 @@ st.sidebar.markdown("""
         box-shadow: none !important;
     }
     
-    .stRadio > div > label {
+    /* Light mode radio buttons */
+    div[data-testid="stRadio"] label {
         display: flex !important;
         align-items: center !important;
-        background: linear-gradient(145deg, #f8f9fa 0%, #ffffff 100%) !important;
+        background: #ffffff !important;
         border: 2px solid #e9ecef !important;
         border-radius: 15px !important;
         padding: 1rem !important;
         margin: 0.5rem 0 !important;
         font-size: 1rem !important;
         font-weight: 600 !important;
-        color: #333 !important;
+        color: #333333 !important;
         cursor: pointer !important;
         transition: all 0.3s ease !important;
         width: 100% !important;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
     }
     
-    .stRadio > div > label:hover {
+    /* Dark mode radio buttons - using CSS media query */
+    @media (prefers-color-scheme: dark) {
+        div[data-testid="stRadio"] label {
+            background: #262730 !important;
+            border: 2px solid #4a4a4a !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+        }
+    }
+    
+    /* Dark mode for Streamlit's dark theme class */
+    .stApp[data-theme="dark"] div[data-testid="stRadio"] label,
+    html[data-theme="dark"] div[data-testid="stRadio"] label {
+        background: #262730 !important;
+        border: 2px solid #4a4a4a !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    }
+    
+    /* Hover effects - works for both modes */
+    div[data-testid="stRadio"] label:hover {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
         color: white !important;
         transform: translateY(-3px) !important;
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5) !important;
         border-color: #667eea !important;
     }
     
-    .stRadio > div > label > div:first-child {
+    /* Radio button circle */
+    div[data-testid="stRadio"] label > div:first-child {
         background: transparent !important;
         border: none !important;
         margin-right: 0.8rem !important;
@@ -373,6 +437,35 @@ st.sidebar.markdown("""
         padding: 1.5rem;
         margin: 1.5rem 0;
         box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+    }
+    
+    @media (prefers-color-scheme: dark) {
+        .mode-description {
+            background: linear-gradient(145deg, #2a2d3a 0%, #323544 100%);
+            color: #ffffff;
+        }
+        .mode-description .title {
+            color: #ffffff !important;
+        }
+        .mode-description .desc {
+            color: #cccccc !important;
+        }
+    }
+    
+    .stApp[data-theme="dark"] .mode-description,
+    html[data-theme="dark"] .mode-description {
+        background: linear-gradient(145deg, #2a2d3a 0%, #323544 100%);
+        color: #ffffff;
+    }
+    
+    .stApp[data-theme="dark"] .mode-description .title,
+    html[data-theme="dark"] .mode-description .title {
+        color: #ffffff !important;
+    }
+    
+    .stApp[data-theme="dark"] .mode-description .desc,
+    html[data-theme="dark"] .mode-description .desc {
+        color: #cccccc !important;
     }
     
     .mode-description .icon {
@@ -403,6 +496,40 @@ st.sidebar.markdown("""
         border: 2px solid #e9ecef;
         box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         position: relative;
+        overflow: hidden;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+        .sidebar-stats {
+            background: linear-gradient(145deg, #2d2d2d 0%, #3a3a3a 100%);
+            border: 2px solid #4a4a4a;
+        }
+        .stats-header, .stat-label, .stat-value {
+            color: #ffffff !important;
+        }
+        .stat-item {
+            border-bottom: 1px solid #4a4a4a !important;
+        }
+    }
+    
+    .stApp[data-theme="dark"] .sidebar-stats,
+    html[data-theme="dark"] .sidebar-stats {
+        background: linear-gradient(145deg, #2d2d2d 0%, #3a3a3a 100%);
+        border: 2px solid #4a4a4a;
+    }
+    
+    .stApp[data-theme="dark"] .stats-header,
+    .stApp[data-theme="dark"] .stat-label,
+    .stApp[data-theme="dark"] .stat-value,
+    html[data-theme="dark"] .stats-header,
+    html[data-theme="dark"] .stat-label,
+    html[data-theme="dark"] .stat-value {
+        color: #ffffff !important;
+    }
+    
+    .stApp[data-theme="dark"] .stat-item,
+    html[data-theme="dark"] .stat-item {
+        border-bottom: 1px solid #4a4a4a !important;
     }
     
     .sidebar-stats::before {
@@ -411,9 +538,11 @@ st.sidebar.markdown("""
         top: 0;
         left: 0;
         right: 0;
+        width: 100%; 
         height: 3px;
         background: linear-gradient(90deg, #22c55e, #16a34a);
         border-radius: 20px 20px 0 0;
+        z-index: 1; 
     }
     
     .stats-header {
@@ -457,17 +586,56 @@ st.sidebar.markdown("""
         margin: 1.5rem 0;
         box-shadow: 0 8px 25px rgba(255, 193, 7, 0.2);
         position: relative;
+        overflow: hidden;
     }
     
-    .help-section::before {
+    
+    @media (prefers-color-scheme: dark) {
+        .help-section {
+            background: linear-gradient(145deg, #3a3420 0%, #4a4228 100%);
+        }
+        .help-header {
+            color: #ffd54f !important;
+        }
+        .help-content {
+            color: #ffcc80 !important;
+        }
+        .help-content strong {
+            color: #ffd54f !important;
+        }
+    }
+    
+    .stApp[data-theme="dark"] .help-section,
+    html[data-theme="dark"] .help-section {
+        background: linear-gradient(145deg, #3a3420 0%, #4a4228 100%);
+    }
+    
+    .stApp[data-theme="dark"] .help-header,
+    html[data-theme="dark"] .help-header {
+        color: #ffd54f !important;
+    }
+    
+    .stApp[data-theme="dark"] .help-content,
+    html[data-theme="dark"] .help-content {
+        color: #ffcc80 !important;
+    }
+    
+    .stApp[data-theme="dark"] .help-content strong,
+    html[data-theme="dark"] .help-content strong {
+        color: #ffd54f !important;
+    }
+    
+     .help-section::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
+        width: 100%;
         height: 3px;
         background: linear-gradient(90deg, #ff9800, #f57c00);
         border-radius: 20px 20px 0 0;
+        z-index: 1; 
     }
     
     .help-header {
@@ -491,7 +659,7 @@ st.sidebar.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Enhanced Sidebar Header
+# Sidebar Header
 st.sidebar.markdown("""
 <div class="sidebar-header">
     <h2>🔧 Control Panel</h2>
@@ -527,24 +695,41 @@ analysis_options = [
     }
 ]
 
-# Enhanced Analysis Selection Section
+# Analysis Selection Section
 st.sidebar.markdown("""
 <div class="analysis-selector">
-    <div class="selector-header">
+    <div class="selector-header" style="margin-bottom: -1rem;">
         <h3>🎯 Choose Analysis Mode</h3>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Fixed radio button with proper label
 analysis_mode = st.sidebar.radio(
-    "Select Analysis Type",
+    "analysis_mode_selector",
     options=[opt["value"] for opt in analysis_options],
     format_func=lambda x: next(opt["icon"] + "  " + opt["title"] for opt in analysis_options if opt["value"] == x),
-    label_visibility="collapsed"
+    label_visibility="hidden"
 )
+st.sidebar.markdown("""
+<style>
+    /* Remove empty space from hidden radio button label */
+    div[data-testid="stRadio"] > div:first-child {
+        display: none !important;
+    }
+    
+    /* Remove top margin from radio options container */
+    div[data-testid="stRadio"] {
+        margin-top: -1rem !important;
+    }
+    
+    /* Adjust selector header bottom margin */
+    .selector-header {
+        margin-bottom: 0rem !important;
+    }
+</style>
+""", unsafe_allow_html=True)
 
-# Enhanced description for selected mode
+# Description for selected mode
 selected_option = next(opt for opt in analysis_options if opt["value"] == analysis_mode)
 st.sidebar.markdown(f"""
 <div class="mode-description">
@@ -554,7 +739,7 @@ st.sidebar.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Enhanced sidebar stats
+# Sidebar stats
 st.sidebar.markdown("""
 <div class="sidebar-stats">
     <div class="stats-header">📊 System Status</div>
@@ -581,7 +766,7 @@ st.sidebar.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Enhanced help section
+# Help section
 st.sidebar.markdown("---")
 st.sidebar.markdown("""
 <div class="help-section">
@@ -671,7 +856,7 @@ if analysis_mode == "Real-time URL Analysis":
 elif analysis_mode == "Batch File Analysis":
     st.header("📁 Batch File Analysis")
     
-    # Enhanced upload section
+    # Upload section
     st.markdown("""
     <div class="upload-section">
         <h3 style="color: #667eea; margin-bottom: 1rem;">📤 Upload Your CSV File</h3>
@@ -913,7 +1098,7 @@ elif analysis_mode == "Traffic Insights":
         ]
         
         traffic_data = []
-        for url in sample_urls * 20:  # Simulate more data
+        for url in sample_urls * 20: 
             features = extract_features(url)
             pred = st.session_state.model.predict([features])[0]
             traffic_type = st.session_state.traffic_analyzer.classify_traffic(url)
@@ -957,7 +1142,7 @@ elif analysis_mode == "Traffic Insights":
     
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Enhanced Footer
+#Footer
 st.markdown("---")
 st.markdown("""
 <div class="footer">

@@ -144,11 +144,10 @@ The enhanced Random Forest model achieves impressive performance metrics:
 
 | Metric | Score |
 |--------|-------|
-| **Accuracy** | 95.8% |
-| **Precision** | 94.2% |
-| **Recall** | 96.1% |
-| **F1-Score** | 95.1% |
-| **Cross-Validation** | 94.7% ± 1.2% |
+| **Accuracy** | 94.1% |
+| **Precision** | 90.9% |
+| **Recall** | 100% |
+| **F1-Score** | 95.2% |
 
 ### Key Features Used
 

@@ -1018,21 +1018,28 @@ elif analysis_mode == "Model Performance":
         y_pred = st.session_state.model.predict(X_test)
         y_prob = st.session_state.model.predict_proba(X_test)
         
-        # Metrics
-        accuracy = accuracy_score(y_true, y_pred)
+            # Metrics 
+        accuracy = accuracy_score(y_true, y_pred) * 100
+        
+        # Calculate True Positives, False Positives, False Negatives
+        tp = np.sum((y_true == 1) & (y_pred == 1))
+        fp = np.sum((y_true == 0) & (y_pred == 1))
+        fn = np.sum((y_true == 1) & (y_pred == 0))
+        
+        # Calculate precision, recall, and F1-score correctly
+        precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+        recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+        f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
         
         col1, col2, col3, col4 = st.columns(4)
         with col1:
-            st.metric("Accuracy", f"{accuracy:.3f}")
+            st.metric("Accuracy", f"{accuracy:.1f}%")
         with col2:
-            precision = np.mean([1 if y_true[i] == y_pred[i] and y_pred[i] == 1 else 0 for i in range(len(y_true))]) if any(y_pred) else 0
-            st.metric("Precision", f"{precision:.3f}")
+            st.metric("Precision", f"{precision * 100:.1f}%")
         with col3:
-            recall = np.mean([1 if y_true[i] == y_pred[i] and y_true[i] == 1 else 0 for i in range(len(y_true))]) if any(y_true) else 0
-            st.metric("Recall", f"{recall:.3f}")
+            st.metric("Recall", f"{recall * 100:.1f}%")
         with col4:
-            f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
-            st.metric("F1-Score", f"{f1:.3f}")
+            st.metric("F1-Score", f"{f1 * 100:.1f}%")
         
         # Confusion Matrix
         col1, col2 = st.columns(2)
@@ -1073,37 +1080,77 @@ elif analysis_mode == "Model Performance":
             # Get the actual number of features from the model
             n_features = len(st.session_state.model.feature_importances_)
             
-            # Default feature names - adjust based on your actual features
-            default_feature_names = ['Token Count', 'Token Length Sum', 'SQL Pattern', 
-                                   'XSS Pattern', 'Entropy', 'Select Count', 'OR Count', 
-                                   'AND Count', 'Script Count', 'Alert Count']
+            # Concise feature names mapping
+            feature_names_mapping = {
+                0: 'Token Count',
+                1: 'Token Length', 
+                2: 'SQL Pattern',
+                3: 'XSS Pattern',
+                4: 'URL Entropy',
+                5: 'SELECT Count',
+                6: 'OR Count',
+                7: 'AND Count',
+                8: 'SCRIPT Count',
+                9: 'ALERT Count',
+                10: 'Special Chars',
+                11: 'Digits Count',
+                12: 'URL Length',
+                13: 'Param Count',
+                14: 'Suspicious Chars',
+                15: 'Path Depth',
+                16: 'Domain Length',
+                17: 'Subdomain Count',
+                18: 'UNION Count',
+                19: 'DROP Count',
+                20: 'DELETE Count',
+                21: 'INSERT Count',
+                22: 'UPDATE Count',
+                23: 'EXEC Count',
+                24: 'ONCLICK Count',
+                25: 'ONLOAD Count',
+                26: 'ONERROR Count',
+                27: 'IFRAME Count',
+                28: 'OBJECT Count',
+                29: 'EMBED Count'
+            }
             
-            # Handle different numbers of features
-            if n_features <= len(default_feature_names):
-                feature_names = default_feature_names[:n_features]
+            # feature names list 
+            feature_names = []
+            feature_importances = []
+            
+            for i in range(n_features):
+                if i in feature_names_mapping:
+                    feature_names.append(feature_names_mapping[i])
+                    feature_importances.append(st.session_state.model.feature_importances_[i])
+            
+            # DataFrame with only mapped features
+            if feature_names:  # Only proceed if we have mapped features
+                importance_df = pd.DataFrame({
+                    'Feature': feature_names,
+                    'Importance': feature_importances
+                }).sort_values('Importance', ascending=True)
+                
+                # most important features for visualization
+                importance_df = importance_df.tail(15)
+                
+                fig = px.bar(importance_df, x='Importance', y='Feature', 
+                            orientation='h', title='Top Feature Importance',
+                            color='Importance',
+                            color_continuous_scale='viridis')
+                fig.update_layout(height=500)
+                st.plotly_chart(fig, use_container_width=True)
             else:
-                # If model has more features than our default names, add generic names
-                feature_names = default_feature_names + [f'Feature_{i}' for i in range(len(default_feature_names), n_features)]
-            
-            # Create DataFrame with matching lengths
-            importance_df = pd.DataFrame({
-                'Feature': feature_names,
-                'Importance': st.session_state.model.feature_importances_
-            }).sort_values('Importance', ascending=True)
-            
-            fig = px.bar(importance_df, x='Importance', y='Feature', 
-                        orientation='h', title='Feature Importance')
-            st.plotly_chart(fig, use_container_width=True)
+                st.warning("No mapped features available for display.")
         else:
             st.warning("Feature importance not available for this model type.")
     
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Generate sample traffic data for demonstration
+# sample traffic data for demonstration
 elif analysis_mode == "Traffic Insights":
     st.header("🌐 Network Traffic Insights")
     
-    # Generate sample traffic data for demonstration
+    # sample traffic data for demonstration
     if st.button("📊 Generate Traffic Analysis"):
         sample_urls = [
             "http://example.com/api/data",

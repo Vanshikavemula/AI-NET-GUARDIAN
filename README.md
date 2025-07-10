@@ -29,7 +29,11 @@ AI Network Security Dashboard is a cutting-edge machine learning application des
 
 
 
-https://github.com/user-attachments/assets/e687e88c-67f1-4d4b-91db-b9cc46f15e27
+
+
+https://github.com/user-attachments/assets/fbe2f55d-73f3-434b-8b89-151618740b62
+
+
 
 
 

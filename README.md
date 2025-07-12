@@ -5,6 +5,7 @@
 
 
 > **Advanced AI-Powered Network Security Dashboard for Real-time Threat Detection and Traffic Classification**
+> **ACKNOWLEDGEMENT**: *This project was conducted as a requirement of the Department of Computer Science and Engineering at the GITAM School of Technology. We would like to express our gratitude to the department for the invaluable resources and infrastructure that facilitated our research. We are especially thankful to Mr. Mohan Krishna Samantula, Assistant Professor in the CSE Department, for his valuable support and encouragement. His expertise has been crucial to the successful completion of this work. We also extend our sincere thanks to Dr. Venkata Ramana Murthy Oruganti, Associate Professor from GITAM University,  for his constant support, insightful guidance, and motivation throughout this endeavour.*
 
 ## 🌟 Live Demo
 

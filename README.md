@@ -1,7 +1,6 @@
-# 🛡️ AI NET GUARDIAN
+# AI NET GUARDIAN
 
-<img width="1706" alt="ainetguardianss" src="https://github.com/user-attachments/assets/3dbe276c-9fc6-41af-aa13-18c5b1cd4118" />
-
+<img width="1710" height="994" alt="AINETGUARDIAN" src="https://github.com/user-attachments/assets/286a8e8c-8261-4950-b662-ea8df6929d25" />
 
 
 > **Advanced AI-Powered Network Security Dashboard for Real-time Threat Detection and Traffic Classification**
@@ -9,7 +8,7 @@
 
 ## 🌟 Live Demo
 
-🚀 **[Try the Live Application](https://ainetguardian.streamlit.app)** 🚀
+ **[Try the Live Application](https://ainetguardian.streamlit.app)** 
 
 ## 📋 Table of Contents
 
@@ -267,9 +266,4 @@ python -c "import joblib; model = joblib.load('model/rf_model.pkl'); print('✅ 
 - 🎨 Dark/Light mode support
 - 📁 Large file processing (200MB+)
 
-### v2.0.0
-- 🛡️ Advanced threat detection
-- 📈 Real-time analytics dashboard
-- 🔍 Batch processing capabilities
-- 🎯 Model performance metrics
 

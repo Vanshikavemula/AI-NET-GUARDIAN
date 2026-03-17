@@ -29,13 +29,13 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     
     .main-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        background: linear-gradient(135deg, #0a1929 0%, #1e3a8a 50%, #3b82f6 100%);
         padding: 2rem;
         border-radius: 20px;
         color: white;
         text-align: center;
         margin-bottom: 2rem;
-        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 20px 40px rgba(30, 58, 138, 0.4);
         animation: gradient-shift 3s ease infinite;
         position: relative;
         overflow: hidden;
@@ -58,8 +58,8 @@ st.markdown("""
     }
     
     @keyframes gradient-shift {
-        0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
-        50% { background: linear-gradient(135deg, #f093fb 0%, #667eea 50%, #764ba2 100%); }
+        0%, 100% { background: linear-gradient(135deg, #0a1929 0%, #1e3a8a 50%, #3b82f6 100%); }
+        50% { background: linear-gradient(135deg, #3b82f6 0%, #0a1929 50%, #1e3a8a 100%); }
     }
     
     .main-header h1 {
@@ -99,7 +99,7 @@ st.markdown("""
         left: 0;
         width: 100%;
         height: 2px;
-        background: linear-gradient(90deg, #667eea, #764ba2);
+        background: linear-gradient(90deg, #1e3a8a, #3b82f6);
     }
     
     .metric-card:hover {
@@ -128,7 +128,7 @@ st.markdown("""
     }
     
     .stButton > button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         color: white;
         border: none;
         border-radius: 12px;
@@ -136,12 +136,12 @@ st.markdown("""
         font-weight: 600;
         font-family: 'Inter', sans-serif;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4);
     }
     
     .stButton > button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        box-shadow: 0 8px 25px rgba(30, 58, 138, 0.6);
     }
     
     .stSelectbox > div > div {
@@ -195,22 +195,22 @@ st.markdown("""
     
     @media (prefers-color-scheme: dark) {
         .stTextArea > div > div > textarea:focus {
-            border-color: #667eea !important;
-            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) !important;
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3) !important;
         }
     }
     
     .stApp[data-theme="dark"] .stTextArea > div > div > textarea:focus,
     html[data-theme="dark"] .stTextArea > div > div > textarea:focus {
-        border-color: #667eea !important;
-        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3) !important;
     }
     
     .upload-section {
         background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
         padding: 2rem;
         border-radius: 20px;
-        border: 2px dashed #667eea;
+        border: 2px dashed #3b82f6;
         text-align: center;
         margin: 2rem 0;
         transition: all 0.3s ease;
@@ -235,13 +235,13 @@ st.markdown("""
     }
     
     .upload-section:hover {
-        border-color: #764ba2;
+        border-color: #1e3a8a;
         background: linear-gradient(145deg, #f8f9fa 0%, #ffffff 100%);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        box-shadow: 0 8px 25px rgba(30, 58, 138, 0.2);
     }
     
     .sidebar .stSelectbox > div > div {
-        background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(145deg, #1e3a8a 0%, #3b82f6 100%);
         color: white;
         border-radius: 12px;
     }
@@ -262,18 +262,18 @@ st.markdown("""
     }
     
     .stProgress > div > div {
-        background: linear-gradient(90deg, #667eea, #764ba2);
+        background: linear-gradient(90deg, #1e3a8a, #3b82f6);
         border-radius: 10px;
     }
     
     .footer {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0a1929 0%, #1e3a8a 100%);
         color: white;
         padding: 2rem;
         border-radius: 20px;
         text-align: center;
         margin-top: 3rem;
-        box-shadow: 0 -10px 30px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 -10px 30px rgba(30, 58, 138, 0.3);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -287,7 +287,7 @@ if 'traffic_analyzer' not in st.session_state:
 # Header styling
 st.markdown("""
 <div class="main-header">
-    <h1>🛡️ AI-Powered Network Security Dashboard</h1>
+    <h1>AI-NET GUARDIAN</h1>
     <p>Advanced ML-based Traffic Classification & Threat Detection System</p>
 </div>
 """, unsafe_allow_html=True)
@@ -302,13 +302,13 @@ st.sidebar.markdown("""
     }
     
     .sidebar-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0a1929 0%, #1e3a8a 100%);
         color: white;
         padding: 1.5rem;
         border-radius: 20px;
         margin-bottom: 1.5rem;
         text-align: center;
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 10px 30px rgba(30, 58, 138, 0.4);
         position: relative;
         overflow: hidden;
     }
@@ -353,13 +353,13 @@ st.sidebar.markdown("""
     }
 
     .selector-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         color: white;
         padding: 1rem;
         border-radius: 15px;
         margin-bottom: 1rem;
         text-align: center;
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 5px 15px rgba(30, 58, 138, 0.3);
     }
 
     .selector-header h3 {
@@ -415,11 +415,11 @@ st.sidebar.markdown("""
     
     /* Hover effects - works for both modes */
     div[data-testid="stRadio"] label:hover {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%) !important;
         color: white !important;
         transform: translateY(-3px) !important;
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5) !important;
-        border-color: #667eea !important;
+        box-shadow: 0 8px 25px rgba(30, 58, 138, 0.5) !important;
+        border-color: #3b82f6 !important;
     }
     
     /* Radio button circle */
@@ -431,17 +431,17 @@ st.sidebar.markdown("""
     
     /* Description box styling */
     .mode-description {
-        background: linear-gradient(145deg, #f0f4ff 0%, #e6f0ff 100%);
-        border-left: 4px solid #667eea;
+        background: linear-gradient(145deg, #dbeafe 0%, #bfdbfe 100%);
+        border-left: 4px solid #3b82f6;
         border-radius: 15px;
         padding: 1.5rem;
         margin: 1.5rem 0;
-        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+        box-shadow: 0 5px 20px rgba(30, 58, 138, 0.1);
     }
     
     @media (prefers-color-scheme: dark) {
         .mode-description {
-            background: linear-gradient(145deg, #2a2d3a 0%, #323544 100%);
+            background: linear-gradient(145deg, #1e293b 0%, #334155 100%);
             color: #ffffff;
         }
         .mode-description .title {
@@ -454,7 +454,7 @@ st.sidebar.markdown("""
     
     .stApp[data-theme="dark"] .mode-description,
     html[data-theme="dark"] .mode-description {
-        background: linear-gradient(145deg, #2a2d3a 0%, #323544 100%);
+        background: linear-gradient(145deg, #1e293b 0%, #334155 100%);
         color: #ffffff;
     }
     
@@ -662,8 +662,8 @@ st.sidebar.markdown("""
 # Sidebar Header
 st.sidebar.markdown("""
 <div class="sidebar-header">
-    <h2>🔧 Control Panel</h2>
-    <p class="subtitle">AI Network Security Dashboard</p>
+    <h2>Control Panel</h2>
+    <p class="subtitle">AI Net Guardian</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -699,7 +699,7 @@ analysis_options = [
 st.sidebar.markdown("""
 <div class="analysis-selector">
     <div class="selector-header" style="margin-bottom: -1rem;">
-        <h3>🎯 Choose Analysis Mode</h3>
+        <h3>Choose Analysis Mode</h3>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -753,7 +753,7 @@ st.sidebar.markdown("""
     </div>
     <div class="stat-item">
         <span class="stat-label">🔒 Security Level</span>
-        <span class="stat-value" style="color: #667eea;">Maximum</span>
+        <span class="stat-value" style="color: #3b82f6;">Maximum</span>
     </div>
     <div class="stat-item">
         <span class="stat-label">🚀 Version</span>
@@ -859,7 +859,7 @@ elif analysis_mode == "Batch File Analysis":
     # Upload section
     st.markdown("""
     <div class="upload-section">
-        <h3 style="color: #667eea; margin-bottom: 1rem;">📤 Upload Your CSV File</h3>
+        <h3 style="color: #3b82f6; margin-bottom: 1rem;">📤 Upload Your CSV File</h3>
         <p style="color: #666; margin-bottom: 1rem;">Maximum file size: 200MB | Supported format: CSV</p>
     </div>
     """, unsafe_allow_html=True)
@@ -903,7 +903,7 @@ elif analysis_mode == "Batch File Analysis":
                 if 'url' not in df.columns:
                     st.error("❌ CSV must contain a 'url' column!")
                 else:
-                  if st.button("🚀 Start Analysis", type="primary"):
+                  if st.button("Start Analysis", type="primary"):
                         # Analysis
                         progress_bar = st.progress(0)
                         status_text = st.empty()
@@ -1192,7 +1192,7 @@ elif analysis_mode == "Traffic Insights":
             st.plotly_chart(fig, use_container_width=True)
         
         # Time-based analysis
-        st.subheader("⏰ Temporal Analysis")
+        st.subheader("Temporal Analysis")
         df_traffic['Hour'] = df_traffic['Timestamp'].dt.hour
         hourly_threats = df_traffic[df_traffic['Threat_Status'] == 'Malicious'].groupby('Hour').size().reset_index(name='Threats')
         
@@ -1210,9 +1210,8 @@ elif analysis_mode == "Traffic Insights":
 st.markdown("---")
 st.markdown("""
 <div class="footer">
-    <h3>🛡️ AI-Powered Network Security Dashboard</h3>
+    <h3>AI-Net Guardian</h3>
     <p>Built with Streamlit & Machine Learning</p>
-    <p>✅ Deliverable 1: AI-Powered Traffic Classification | ✅ Deliverable 2: Threat Detection & Anomaly Identification</p>
-    <p style="margin-top: 1rem; opacity: 0.8;">Powered by advanced ML algorithms for real-time threat detection</p>
+    <p>AI-Powered Traffic Classification | Threat Detection & Anomaly Identification</p>
 </div>
 """, unsafe_allow_html=True)
